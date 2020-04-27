@@ -41,6 +41,12 @@ namespace MySolution
 
             app.UseHttpsRedirection();
 
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("IndexNumber", "s18410");
+                await next();
+            });
+
             app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseRouting();
